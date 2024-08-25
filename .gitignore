@@ -1,0 +1,20 @@
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore environment-specific files
+.env
+venv/
+*.log
+
+# Ignore Google Cloud service account keys
+*-service-account-key.json
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
