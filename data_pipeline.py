@@ -8,8 +8,8 @@ import json
 
 project_id = "marveldatabaseproject"
 topic_name = "marveldatabasetopic"
-subscription = "projects/marveldatabaseproject/subscriptions/marveldatabasetopic-sub ".format(project_id, 'marveldatabasetopic-sub')
-dataset_path = "../marvel_database_project/datasets/edges.csv"
+subscription = "projects/marveldatabaseproject/subscriptions/marveldatabasetopic-sub ".format(project_id,
+                                                                                              'marveldatabasetopic-sub')
 
 # Schema for your BigQuery table
 
@@ -20,6 +20,7 @@ schema = {
     ]
 }
 
+
 # Pipeline steps
 class ParsePubSubMessage(beam.DoFn):
     def process(self, element):
@@ -29,15 +30,14 @@ class ParsePubSubMessage(beam.DoFn):
             'comic': message['comic'],
         }
 
+
 def run():
     # Set up the pipeline options
     options = PipelineOptions(
         runner = 'DataflowRunner',
         project = project_id,
         job_name = 'marvel-universe-pipeline',
-        temp_location = 'gs://your-bucket/temp',
-        region = 'your-region'
+        temp_location = 'gs://temp_marveldatabase',
+        region = 'us-east-1'
     )
     options.view_as(StandardOptions).streaming = True
-
-
